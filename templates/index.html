@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask Öğreniyorum</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Siteme Hoş Geldin!</h1>
+
+        <form action="/cevap" method="POST">
+            
+            <label>İsmin:</label>
+            <input type="text" name="mesaj" placeholder="Adın nedir?" required>
+
+            <label>Hobin:</label>
+            <input type="text" name="hobi" placeholder="Ne yapmayı seversin?">
+
+            <label>Kararın (a/b):</label>
+            <input type="text" name="karar" placeholder="Seçimini yap...">
+
+            <button type="submit">Bilgileri Gönder</button>
+
+        {% if isim %}
+            <hr>
+            <h2>Selam {{ isim }}!</h2>
+            <p>Günün Notu: {{ karar_mesaji }}</p>
+        {% endif %}
+
+        <hr>
+        <h3>Biriken Hobiler:</h3>
+        <ul>
+            {% for h in hobiler %}
+                <li>
+                    {{ h.isim }}: {{ h.hobi }}</li>
+                    <a href="/sil/{{ h.id }}" onclick=return confirm('bu hobiyi silmek istediğine emin misin?'); color: red; text-decoration: none; margin-left: 10px;"  class="btn-delete">[Sil</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+<hr>
+<h3>Bir Kaydı Güncelle</h3>
+<form action="/guncelle_hazirlik" method="POST">
+    <input type="number" name="id" placeholder="Güncellenecek ID No" required>
+    <button type="submit" style="background-color: #f39c12;" class="btn-submit">Gönder</button>
+</form>
+</body>
+</html>

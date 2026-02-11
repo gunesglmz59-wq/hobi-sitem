@@ -1,0 +1,10 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<div class="container">
+    <h2>Kaydı Düzenle (ID: {{ kayit.id }})</h2>
+    <form action="/guncelle_kaydet/{{ kayit.id }}" method="POST">
+        <input type="text" name="yeni_isim" value="{{ kayit.isim }}">
+        <input type="text" name="yeni_hobi" value="{{ kayit.hobi }}">
+        <button type="submit">Değişiklikleri Kaydet</button>
+    </form>
+    <a href="/">Vazgeç</a>
+</div>
